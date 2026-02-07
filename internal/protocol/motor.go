@@ -1,10 +1,10 @@
-//**************************************************************
+// **************************************************************
 //
-//  motor.go
+//	motor.go
 //
-//  Copyright 2026 Yabe.Kazuhiro
+//	Copyright 2026 Yabe.Kazuhiro
 //
-//**************************************************************
+// **************************************************************
 package protocol
 
 // dir: 0x01 forward, 0x02 backward
@@ -27,10 +27,9 @@ func motorDir(speed int) (dir byte, abs byte) {
 func MotorControl(left int, right int) []byte {
 	ld, ls := motorDir(left)
 	rd, rs := motorDir(right)
-	return []byte {
+	return []byte{
 		0x01,
 		0x01, ld, ls,
 		0x02, rd, rs,
 	}
 }
-

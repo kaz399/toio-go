@@ -29,4 +29,3 @@ func Connect(addr bluetooth.Address) (bluetooth.Device, error) {
 	// Initially, there are no parameters.
 	return Adapter.Connect(addr, bluetooth.ConnectionParams{})
 }
-
