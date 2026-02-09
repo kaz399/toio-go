@@ -5,6 +5,7 @@
    Copyright 2026 Yabe.Kazuhiro
 */
 /**************************************************************/
+
 package cube
 
 import (
@@ -20,8 +21,8 @@ type Cube struct {
 	dev toio.Device
 
 	connected bool
-	device bluetooth.Device
-	motor  bluetooth.DeviceCharacteristic
+	device    bluetooth.Device
+	motor     bluetooth.DeviceCharacteristic
 }
 
 func New(d toio.Device) *Cube { return &Cube{dev: d} }

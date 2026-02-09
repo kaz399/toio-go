@@ -5,6 +5,7 @@
    Copyright 2026 Yabe.Kazuhiro
 */
 /**************************************************************/
+
 package cube
 
 import "github.com/kaz399/toio-go/internal/protocol"

@@ -5,6 +5,7 @@
    Copyright 2026 Yabe.Kazuhiro
 */
 /**************************************************************/
+
 package main
 
 import (
