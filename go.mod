@@ -2,10 +2,7 @@ module github.com/kaz399/toio-go
 
 go 1.25.7
 
-require (
-	golang.org/x/tools v0.28.0
-	tinygo.org/x/bluetooth v0.14.0
-)
+require tinygo.org/x/bluetooth v0.14.0
 
 require (
 	github.com/go-ole/go-ole v1.2.6 // indirect
