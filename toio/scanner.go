@@ -11,9 +11,7 @@ import (
 
 type Device struct {
 	Name    string
-	Address string
 	RSSI    int
-
 	BleAddr ble.Address
 }
 
@@ -59,7 +57,6 @@ func (s Scanner) Scan(ctx context.Context, num int) ([]Device, error) {
 
 			found = append(found, Device{
 				Name:    name,
-				Address: key,
 				RSSI:    int(r.RSSI),
 				BleAddr: r.Address,
 			})
