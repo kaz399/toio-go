@@ -19,6 +19,7 @@ import (
 type Cube struct {
 	dev toio.Device
 
+	connected bool
 	device bluetooth.Device
 	motor  bluetooth.DeviceCharacteristic
 }
@@ -52,11 +53,12 @@ func (c *Cube) Connect() error {
 		return errors.New("motor characteristic not found")
 	}
 	c.motor = chars[0]
+	c.connected = true
 	return nil
 }
 
 func (c *Cube) Disconnect() error {
-	if (c.device == bluetooth.Device{}) {
+	if !c.connected {
 		return nil
 	}
 	return c.device.Disconnect()
