@@ -23,9 +23,19 @@ type Cube struct {
 	connected bool
 	device    bluetooth.Device
 	motor     bluetooth.DeviceCharacteristic
+	idChar    bluetooth.DeviceCharacteristic
+
+	events chan Event
 }
 
-func New(d toio.Device) *Cube { return &Cube{dev: d} }
+func New(d toio.Device) *Cube {
+	return &Cube{
+		dev:    d,
+		events: make(chan Event, 32),
+	}
+}
+
+func (c *Cube) Events() <-chan Event { return c.events }
 
 func (c *Cube) Connect() error {
 	device, err := ble.Connect(c.dev.BleAddr)
@@ -54,6 +64,18 @@ func (c *Cube) Connect() error {
 		return errors.New("motor characteristic not found")
 	}
 	c.motor = chars[0]
+
+	ichars, err := services[0].DiscoverCharacteristics([]bluetooth.UUID{protocol.CharID})
+	if err != nil {
+		_ = device.Disconnect()
+		return err
+	}
+	if len(ichars) == 0 {
+		_ = device.Disconnect()
+		return errors.New("id characteristic not found")
+	}
+	c.idChar = ichars[0]
+
 	c.connected = true
 	return nil
 }
